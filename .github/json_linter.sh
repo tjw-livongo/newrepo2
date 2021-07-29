@@ -21,7 +21,7 @@ validate_json() {
 
             if [ ! -f $filename ]; then
                 echo "$filename is deleted, skipping..."
-            else [[ -z $linted ]]; then
+            elif [[ -z $linted ]]; then
                 echo "ERROR: $filename is Invalid"
                 exit 1
             else
