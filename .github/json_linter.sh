@@ -13,11 +13,13 @@ validate_json() {
 
         filename=${elem//$'\n'/}
         if [ "${filename: -5}" == ".json" ]; then 
-          
+
             echo "LOG: $filename identified as a json"
             linted=$(./node_modules/.bin/jsonlint "$filename")
 
-            if [[ -z $linted ]]; then
+            if [ ! -f $filename ]; then
+                echo "$filename is deleted, skipping..."
+            elif [[ -z $linted ]]; then
                 echo "ERROR: $filename is Invalid"
                 exit 1
             else
