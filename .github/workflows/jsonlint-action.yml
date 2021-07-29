@@ -1,0 +1,19 @@
+name: PR JSON Linter
+on: pull_request
+jobs:
+  Validate-JSON:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    timeout-minutes: 1 
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Lint JSON files
+        run: |
+          npm install jsonlint
+          git fetch
+          ./.github/json_linter.sh
+        shell: bash
