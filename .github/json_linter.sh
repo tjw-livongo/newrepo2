@@ -15,8 +15,6 @@ validate_json() {
         if [ "${filename: -5}" == ".json" ]; then 
 
             echo "LOG: $filename identified as a json"
-            
-            echo "$lines_in_file"
             linted=$(./node_modules/.bin/jsonlint "$filename")
 
             if [ ! -f $filename ]; then
